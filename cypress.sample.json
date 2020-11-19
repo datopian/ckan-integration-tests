@@ -4,7 +4,7 @@
   "pageLoadTimeout": 120000,
   "env": {
     "FRONTEND_URL": "",
-    "API_KEY": ",
+    "API_KEY": "",
     "CKAN_USERNAME": "",
     "CKAN_PASSWORD": "",
     "ORG_NAME_SUFFIX": "_organization_test",
