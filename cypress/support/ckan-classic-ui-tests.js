@@ -33,7 +33,7 @@ function createResourceFromUI() {
 }
   
 function uploadExcelFile() {
-  it('Uploads Excel file successfully and creates a preview (data explorer)', () => {
+  it('Uploads Excel file and creates a preview (data explorer)', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample.xlsx', fileName: 'sample.xlsx' })
       cy.get('#field-name').type('sample xlsx')
@@ -48,15 +48,12 @@ function uploadExcelFile() {
 }
   
 function uploadPdfFile() {
-  it('Upload PDF and check its preview', () => {
+  it('Upload PDF', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-with-images.pdf', fileName: 'sample-pdf-with-images.pdf' })
       cy.get('.btn-primary').click()
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
       cy.get('.resource-item > .heading').click()
-      // Check if PDF preview exists
-      cy.get('.module-content > .nav > .active > a').contains('PDF')
-      cy.get('iframe').should('exist')
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
     })
@@ -64,15 +61,11 @@ function uploadPdfFile() {
 }
   
 function uploadLargePdfFile() {
-  it('Upload large PDF and check its preview', () => {
+  it('Upload large PDF', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-large-size.pdf', fileName: 'sample-pdf-large-size.pdf' })
       cy.get('.btn-primary').click()
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
-      // Check if PDF preview exists
-      cy.get('.resource-item > .heading').click()
-      cy.get('.module-content > .nav > .active > a').contains('PDF')
-      cy.get('iframe').should('exist')
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
     })
