@@ -6,19 +6,18 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
 })
 
-describe('No access for anonymous users', () => {
-  it('Anonymous user cannot see the UI', () => {
+describe('Anonymous users access', () => {
+  it('Anonymous user can see the UI', () => {
     cy.clearCookies()
-    cy.visit('/')
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/user/login')
+    cy.request({ url: '/', failOnStatusCode: false }).then((resp) => {
+      expect(resp.status).to.eq(200)
     })
   })
 
-  it('Self registration is disabled', () => {
+  it('User registration enabled', () => {
     cy.clearCookies()
     cy.request({ url: '/user/register', failOnStatusCode: false }).then((resp) => {
-      expect(resp.status).to.eq(403)
+      expect(resp.status).to.eq(200)
     })
   })
 })
