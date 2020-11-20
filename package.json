@@ -11,7 +11,9 @@
     "test:headless": "$(npm bin)/cypress run --headless"
   },
   "dependencies": {
+    "ckan-client": "git+https://github.com/datopian/ckan-client-js.git",
+    "cypress": "^4.9.0",
     "cypress-file-upload": "^4.0.7",
-    "cypress": "^4.9.0"
+    "frictionless.js": "^0.13.3"
   }
 }

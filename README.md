@@ -178,3 +178,15 @@ As mentioned below in best practices please _make sure your tests are always iso
 - Don't use the previous test result for granted for next result. If the login passes in previous test you should login again for the new test even if it takes slightly more time.
 - Don't do things like `cy.wait(5000 seconds)` these are arbitrary and prone to failure depending on request and execution time.
 - You can add the constants and files on `cypress/fixtures` — for example, the `cypress/fixtures/sample.csv` which can be used in commands and tests.
+
+#### Non-browser based integration test
+
+There is also a script to use [CKAN JavaScript client](https://github.com/datopian/ckan-client-js) to run in integration test:
+
+```console
+$ node ntegration_test_with_ckan_client.js <ORGANIZATION NAME>
+```
+
+This script requires a CKAN instance set with an organization.
+
+In the future this script will be integrated into the Cypress set of test specs.
