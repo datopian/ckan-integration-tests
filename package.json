@@ -13,6 +13,7 @@
     "test:mocha-watch": "npm run test:ckan -- --watch"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "chai": "^4.2.0",
     "cypress": "^4.9.0",
     "cypress-file-upload": "^4.0.7",
