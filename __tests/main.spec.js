@@ -1,5 +1,5 @@
-const mocha = require('mocha')
-const chai = require('chai')
+import mocha from 'mocha'
+import chai from 'chai'
 
 const expect = chai.expect
 
