@@ -8,10 +8,14 @@
     "cy:verify": "cypress verify",
     "cy:info": "cypress info",
     "test": "$(npm bin)/cypress open",
-    "test:headless": "$(npm bin)/cypress run --headless"
+    "test:headless": "$(npm bin)/cypress run --headless",
+    "test:ckan" : "./node_modules/.bin/mocha __tests/**/*.spec.js",
+    "test:watch": "npm run test:ckan -- --watch"
   },
   "dependencies": {
+    "chai": "^4.2.0",
+    "cypress": "^4.9.0",
     "cypress-file-upload": "^4.0.7",
-    "cypress": "^4.9.0"
+    "mocha": "^8.2.1"
   }
 }
