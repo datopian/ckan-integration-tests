@@ -8,6 +8,7 @@
     "CKAN_USERNAME": "",
     "CKAN_PASSWORD": "",
     "ORG_NAME_SUFFIX": "_organization_test",
-    "DATASET_NAME_SUFFIX": "_dataset_test"
+    "DATASET_NAME_SUFFIX": "_dataset_test",
+    "GIFTLESS_URL": ""
   }
 }

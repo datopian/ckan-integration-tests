@@ -9,8 +9,7 @@
     "cy:info": "cypress info",
     "test": "$(npm bin)/cypress open",
     "test:headless": "$(npm bin)/cypress run --headless",
-    "test:mocha": "$(npm bin)/mocha mocha/**/*.spec.js",
-    "test:mocha-watch": "npm run test:ckan -- --watch"
+    "test:mocha": "$(npm bin)/mocha mocha/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -18,5 +17,9 @@
     "cypress": "^4.9.0",
     "cypress-file-upload": "^4.0.7",
     "mocha": "^8.2.1"
+  },
+  "devDependencies": {
+    "ckanClient": "git+https://github.com/datopian/ckan-client-js.git#bfa869866c3bf50ada2bbc30376e0191c9c263c7",
+    "frictionless": "git+https://github.com/frictionlessdata/frictionless-js.git#1e48a2d0c545e4294107197fa6100308ab8488e1"
   }
 }
