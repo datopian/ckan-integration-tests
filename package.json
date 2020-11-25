@@ -9,8 +9,7 @@
     "cy:info": "cypress info",
     "test": "$(npm bin)/cypress open",
     "test:headless": "$(npm bin)/cypress run --headless",
-    "test:mocha": "$(npm bin)/mocha mocha/**/*.spec.js",
-    "test:mocha-watch": "npm run test:ckan -- --watch"
+    "test:mocha": "$(npm bin)/mocha mocha/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.21.0",
