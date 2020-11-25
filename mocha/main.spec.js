@@ -55,7 +55,7 @@ describe("CKAN Client can create resource and push blob", () => {
     );
 
     await axios.post(
-      "api/3/action/package_delete",
+      `${config.baseUrl}/api/3/action/package_delete`,
       { id: body.result.id },
       { headers }
     );
