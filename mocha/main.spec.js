@@ -21,7 +21,6 @@ const config = JSON.parse(fs.readFileSync("cypress.json"));
 const sample = fs.readFileSync("./mocha/fixtures/sample.csv", "utf8");
 const orgName = config.env.ORG_NAME_SUFFIX + uuid();
 const packageName = uuid();
-
 const headers = {
   authorization: config.env.API_KEY,
   "content-type": "application/json",
@@ -47,16 +46,14 @@ describe("CKAN Client can create resource and push blob", () => {
 
   afterEach(async () => {
     // Delete the resource (if created)
-    const {
-      body,
-    } = await axios.get(
+    const body = await axios.get(
       `${config.baseUrl}/api/3/action/package_show?name_or_id=${packageName}`,
       { headers }
     );
 
     await axios.post(
       `${config.baseUrl}/api/3/action/package_delete`,
-      { id: body.result.id },
+      { id: body.data.result.id },
       { headers }
     );
   });
@@ -80,7 +77,7 @@ describe("CKAN Client can create resource and push blob", () => {
 
     // then push the blob
     const resp = await client.pushBlob(resource);
-    expect(resp.success).to.be.eq(true);
+    chai.expect(resp.success).to.be.eq(true);
   });
 
   after(async () => {
