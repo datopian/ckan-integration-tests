@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+
+Cypress.env(dotenv.config().parsed)
+
 const headers = {'Authorization': Cypress.env('API_KEY')}
 
 module.exports.createDatastoreTableExistingResource = createDatastoreTableExistingResource;

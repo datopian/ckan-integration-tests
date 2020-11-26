@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+
+Cypress.env(dotenv.config().parsed)
+
 const uuid = () => Math.random().toString(36).slice(2) + '_test'
 
 const headers = {

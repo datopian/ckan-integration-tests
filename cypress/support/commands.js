@@ -24,6 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+import dotenv from 'dotenv'
+
+Cypress.env(dotenv.config().parsed)
+
 const cypressUpload = require('cypress-file-upload')
 const headers = { Authorization: Cypress.env('API_KEY') }
 

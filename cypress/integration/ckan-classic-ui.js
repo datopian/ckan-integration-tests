@@ -1,7 +1,10 @@
+import dotenv from 'dotenv'
 import { createPackageFromUI,createResourceFromUI,
   uploadExcelFile,uploadPdfFile,uploadLargePdfFile,
   createOrganizationFromUI,subscribeUnsubscribeDataset
   } from "../support/ckan-classic-ui-tests"
+
+Cypress.env(dotenv.config().parsed)
 
 const cypressUpload = require('cypress-file-upload')
 const ckanUserName = Cypress.env('CKAN_USERNAME')

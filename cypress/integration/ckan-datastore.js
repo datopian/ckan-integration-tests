@@ -1,6 +1,9 @@
+import dotenv from 'dotenv'
 import { createDatastoreTableExistingResource,
   createDatastoreTableNewResource, getTableInformation,
   upsertDatastoreTable, deleteDatastoreTable } from "../support/ckan-datastore-tests"
+
+Cypress.env(dotenv.config().parsed)
 
 const headers = {'Authorization': Cypress.env('API_KEY')}
 const ckanUserName = Cypress.env('CKAN_USERNAME')
