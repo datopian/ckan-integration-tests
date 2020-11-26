@@ -1,8 +1,7 @@
-import moch from "mocha";
 import axios from "axios";
 import fs from "fs";
-
 import chai from "chai";
+import dotenv from 'dotenv'
 
 /**
  * TODO: Probably we need ckanClient and frictionless to be passed as an arguments in this test suite.
@@ -16,22 +15,22 @@ const open = frictionless.open;
 
 const uuid = () => Math.random().toString(36).slice(2) + "_test";
 // TODO: Probably we need to have a general config which will be usable for both Mocha and Cypress
-const config = JSON.parse(fs.readFileSync("cypress.json"));
+const config = dotenv.config().parsed
 
 const sample = fs.readFileSync("./mocha/fixtures/sample.csv", "utf8");
-const orgName = config.env.ORG_NAME_SUFFIX + uuid();
+const orgName = config.ORG_NAME_SUFFIX + uuid();
 const packageName = uuid();
 const headers = {
-  authorization: config.env.API_KEY,
+  authorization: config.API_KEY,
   "content-type": "application/json",
 };
 
 const client = new Client(
-  config.env.API_KEY,
+  config.API_KEY,
   orgName,
   packageName,
   config.baseUrl,
-  config.env.GIFTLESS_URL
+  config.GIFTLESS_URL
 );
 
 describe("CKAN Client can create resource and push blob", () => {
