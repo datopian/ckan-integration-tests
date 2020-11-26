@@ -51,8 +51,3 @@ describe('CKAN DataPusher', () => {
     })
   })
 })
-
-
-
-
-

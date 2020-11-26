@@ -1,10 +1,10 @@
-module.exports.createPackageFromUI = createPackageFromUI;
-module.exports.createResourceFromUI = createResourceFromUI;
-module.exports.uploadExcelFile = uploadExcelFile;
-module.exports.uploadPdfFile = uploadPdfFile;
-module.exports.uploadLargePdfFile = uploadLargePdfFile;
-module.exports.createOrganizationFromUI = createOrganizationFromUI;
-module.exports.subscribeUnsubscribeDataset = subscribeUnsubscribeDataset;
+module.exports.createPackageFromUI = createPackageFromUI
+module.exports.createResourceFromUI = createResourceFromUI
+module.exports.uploadExcelFile = uploadExcelFile
+module.exports.uploadPdfFile = uploadPdfFile
+module.exports.uploadLargePdfFile = uploadLargePdfFile
+module.exports.createOrganizationFromUI = createOrganizationFromUI
+module.exports.subscribeUnsubscribeDataset = subscribeUnsubscribeDataset
 
 function createPackageFromUI() {
   it('Creating a new package from the UI', () => {
@@ -15,14 +15,17 @@ function createPackageFromUI() {
     })
   })
 }
-  
+
 function createResourceFromUI() {
   it('Adding a new resource from the UI', () => {
     cy.createDataset().then((datasetName) => {
       cy.get('.content_action > .btn').click()
       cy.get('.page-header > .nav > :nth-child(2) > a').click()
       cy.get('.page_primary_action > .btn:first-child').click()
-      cy.get('#field-image-upload').attachFile({ filePath: 'sample2.csv', fileName: 'sample2.csv' })
+      cy.get('#field-image-upload').attachFile({
+        filePath: 'sample2.csv',
+        fileName: 'sample2.csv',
+      })
       cy.get('#field-name').type('sample2')
       cy.get('.form-actions > .btn').click()
       cy.contains('sample2')
@@ -31,11 +34,14 @@ function createResourceFromUI() {
     })
   })
 }
-  
+
 function uploadExcelFile() {
   it('Uploads Excel file and creates a preview (data explorer)', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
-      cy.get('#field-image-upload').attachFile({ filePath: 'sample.xlsx', fileName: 'sample.xlsx' })
+      cy.get('#field-image-upload').attachFile({
+        filePath: 'sample.xlsx',
+        fileName: 'sample.xlsx',
+      })
       cy.get('#field-name').type('sample xlsx')
       cy.get('#select2-chosen-1').type('XLSX{enter}')
       cy.get('.btn-primary').click()
@@ -46,11 +52,14 @@ function uploadExcelFile() {
     })
   })
 }
-  
+
 function uploadPdfFile() {
   it('Upload PDF', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
-      cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-with-images.pdf', fileName: 'sample-pdf-with-images.pdf' })
+      cy.get('#field-image-upload').attachFile({
+        filePath: 'sample-pdf-with-images.pdf',
+        fileName: 'sample-pdf-with-images.pdf',
+      })
       cy.get('.btn-primary').click()
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
       cy.get('.resource-item > .heading').click()
@@ -59,11 +68,14 @@ function uploadPdfFile() {
     })
   })
 }
-  
+
 function uploadLargePdfFile() {
   it('Upload large PDF', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
-      cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-large-size.pdf', fileName: 'sample-pdf-large-size.pdf' })
+      cy.get('#field-image-upload').attachFile({
+        filePath: 'sample-pdf-large-size.pdf',
+        fileName: 'sample-pdf-large-size.pdf',
+      })
       cy.get('.btn-primary').click()
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
       cy.deleteDataset(datasetName)
@@ -71,7 +83,7 @@ function uploadLargePdfFile() {
     })
   })
 }
-  
+
 function createOrganizationFromUI() {
   it('Adding a new organization from the UI', () => {
     cy.createOrganization().then((orgName) => {
@@ -79,7 +91,7 @@ function createOrganizationFromUI() {
     })
   })
 }
-  
+
 function subscribeUnsubscribeDataset() {
   it('Make a dataset subscribable and then unsubscribable', () => {
     cy.createDataset().then((datasetName) => {
@@ -99,4 +111,3 @@ function subscribeUnsubscribeDataset() {
     })
   })
 }
-  

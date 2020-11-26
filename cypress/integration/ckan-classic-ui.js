@@ -1,8 +1,13 @@
 import dotenv from 'dotenv'
-import { createPackageFromUI,createResourceFromUI,
-  uploadExcelFile,uploadPdfFile,uploadLargePdfFile,
-  createOrganizationFromUI,subscribeUnsubscribeDataset
-  } from "../support/ckan-classic-ui-tests"
+import {
+  createPackageFromUI,
+  createResourceFromUI,
+  uploadExcelFile,
+  uploadPdfFile,
+  uploadLargePdfFile,
+  createOrganizationFromUI,
+  subscribeUnsubscribeDataset,
+} from '../support/ckan-classic-ui-tests'
 
 Cypress.env(dotenv.config().parsed)
 
@@ -11,12 +16,11 @@ const ckanUserName = Cypress.env('CKAN_USERNAME')
 const ckanUserPassword = Cypress.env('CKAN_PASSWORD')
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-  console.log(err);
-  return false;
+  console.log(err)
+  return false
 })
 
 describe('CKAN Classic UI', () => {
-  
   beforeEach(function () {
     cy.clearCookies()
     cy.login(ckanUserName, ckanUserPassword)

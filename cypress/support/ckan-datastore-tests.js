@@ -2,15 +2,15 @@ import dotenv from 'dotenv'
 
 Cypress.env(dotenv.config().parsed)
 
-const headers = {'Authorization': Cypress.env('API_KEY')}
+const headers = { Authorization: Cypress.env('API_KEY') }
 
-module.exports.createDatastoreTableExistingResource = createDatastoreTableExistingResource;
-module.exports.createDatastoreTableNewResource = createDatastoreTableNewResource;
+module.exports.createDatastoreTableExistingResource = createDatastoreTableExistingResource
+module.exports.createDatastoreTableNewResource = createDatastoreTableNewResource
 module.exports.getTableInformation = getTableInformation
 module.exports.upsertDatastoreTable = upsertDatastoreTable
 module.exports.deleteDatastoreTable = deleteDatastoreTable
 
-function createDatastoreTableExistingResource(datasetName){
+function createDatastoreTableExistingResource(datasetName) {
   it('Create a DataStore table for existing CKAN resource + check datastore_search and datastore_search_sql endpoints', () => {
     cy.get('#field-name').type(datasetName)
     cy.get('.btn-primary').click()
@@ -18,34 +18,31 @@ function createDatastoreTableExistingResource(datasetName){
     cy.request({
       method: 'GET',
       url: '/api/3/action/package_show?id=' + datasetName,
-      headers: headers
+      headers: headers,
     }).then((response) => {
       expect(response.body.success).to.eq(true)
       const resourceId = response.body.result.resources[0].id
       const body = {
         resource_id: resourceId,
         force: true,
-        fields: [
-          {id: 'a'},
-          {id: 'b'}
-        ],
+        fields: [{ id: 'a' }, { id: 'b' }],
         records: [
-          {a: 1, b: 'xyz'},
-          {a: 2, b: 'zzz'}
-        ]
+          { a: 1, b: 'xyz' },
+          { a: 2, b: 'zzz' },
+        ],
       }
       cy.request({
         method: 'POST',
         url: '/api/3/action/datastore_create',
         headers: headers,
-        body: body
+        body: body,
       }).then((response) => {
         expect(response.body.success).to.eq(true)
         // Check 'datastore_search' endpoint
         cy.request({
           method: 'GET',
           url: '/api/3/action/datastore_search?resource_id=' + resourceId,
-          headers: headers
+          headers: headers,
         }).then((response) => {
           expect(response.body.success).to.eq(true)
           expect(response.body.result.total).to.eq(2)
@@ -54,7 +51,7 @@ function createDatastoreTableExistingResource(datasetName){
         cy.request({
           method: 'GET',
           url: `/api/3/action/datastore_search_sql?sql=SELECT * FROM "${resourceId}"`,
-          headers: headers
+          headers: headers,
         }).then((response) => {
           expect(response.body.success).to.eq(true)
           expect(response.body.result.records.length).to.eq(2)
@@ -64,7 +61,7 @@ function createDatastoreTableExistingResource(datasetName){
   })
 }
 
-function createDatastoreTableNewResource(datasetName){
+function createDatastoreTableNewResource(datasetName) {
   it('Create a DataStore table with a new CKAN resource', () => {
     cy.get('#field-name').type(datasetName)
     cy.get('.btn-primary').click()
@@ -72,37 +69,34 @@ function createDatastoreTableNewResource(datasetName){
     const body = {
       resource: {
         package_id: datasetName,
-        name: datasetName + '-datastore'
+        name: datasetName + '-datastore',
       },
-      fields: [
-        {id: 'a'},
-        {id: 'b'}
-      ],
+      fields: [{ id: 'a' }, { id: 'b' }],
       records: [
-        {a: 1, b: 'xyz'},
-        {a: 2, b: 'zzz'}
-      ]
+        { a: 1, b: 'xyz' },
+        { a: 2, b: 'zzz' },
+      ],
     }
     cy.request({
       method: 'POST',
       url: '/api/3/action/datastore_create',
       headers: headers,
-      body: body
+      body: body,
     }).then((response) => {
       expect(response.body.success).to.eq(true)
       cy.request({
         method: 'GET',
         url: '/api/3/action/package_show?id=' + datasetName,
-        headers: headers
+        headers: headers,
       }).then((response) => {
         expect(response.body.success).to.eq(true)
-        const resourceId = response.body.result.resources
-          .find(item => item.name === datasetName + '-datastore')
-          .id
+        const resourceId = response.body.result.resources.find(
+          (item) => item.name === datasetName + '-datastore'
+        ).id
         cy.request({
           method: 'GET',
           url: '/api/3/action/datastore_search?resource_id=' + resourceId,
-          headers: headers
+          headers: headers,
         }).then((response) => {
           expect(response.body.success).to.eq(true)
           expect(response.body.result.total).to.eq(2)
@@ -114,7 +108,9 @@ function createDatastoreTableNewResource(datasetName){
 
 function getTableInformation() {
   it('Get information about tables and aliases in DataStore', () => {
-    cy.request({url: '/api/3/action/datastore_search?resource_id=_table_metadata'}).then((resp) => {
+    cy.request({
+      url: '/api/3/action/datastore_search?resource_id=_table_metadata',
+    }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
   })
@@ -128,7 +124,7 @@ function upsertDatastoreTable(datasetName) {
     cy.request({
       method: 'GET',
       url: '/api/3/action/package_show?id=' + datasetName,
-      headers: headers
+      headers: headers,
     }).then((response) => {
       expect(response.body.success).to.eq(true)
       const resourceId = response.body.result.resources[0].id
@@ -136,21 +132,21 @@ function upsertDatastoreTable(datasetName) {
         resource_id: resourceId,
         force: true,
         fields: [
-          {id: 'a', type: 'int'},
-          {id: 'b', type: 'text'}
-        ]
+          { id: 'a', type: 'int' },
+          { id: 'b', type: 'text' },
+        ],
       }
       cy.request({
         method: 'POST',
         url: '/api/3/action/datastore_create',
         headers: headers,
-        body: body
+        body: body,
       }).then((response) => {
         expect(response.body.success).to.eq(true)
         cy.request({
           method: 'GET',
           url: '/api/3/action/datastore_search?resource_id=' + resourceId,
-          headers: headers
+          headers: headers,
         }).then((response) => {
           expect(response.body.success).to.eq(true)
           expect(response.body.result.total).to.eq(0)
@@ -159,22 +155,22 @@ function upsertDatastoreTable(datasetName) {
             resource_id: resourceId,
             force: true,
             records: [
-              {a: 1, b: 'xyz'},
-              {a: 2, b: 'zzz'}
+              { a: 1, b: 'xyz' },
+              { a: 2, b: 'zzz' },
             ],
-            method: 'insert'
+            method: 'insert',
           }
           cy.request({
             method: 'POST',
             url: '/api/3/action/datastore_upsert',
             headers: headers,
-            body: body
+            body: body,
           }).then((response) => {
             expect(response.body.success).to.eq(true)
             cy.request({
               method: 'GET',
               url: '/api/3/action/datastore_search?resource_id=' + resourceId,
-              headers: headers
+              headers: headers,
             }).then((response) => {
               expect(response.body.success).to.eq(true)
               expect(response.body.result.total).to.eq(2)
@@ -194,7 +190,7 @@ function deleteDatastoreTable(datasetName) {
     cy.request({
       method: 'GET',
       url: '/api/3/action/package_show?id=' + datasetName,
-      headers: headers
+      headers: headers,
     }).then((response) => {
       expect(response.body.success).to.eq(true)
       const resourceId = response.body.result.resources[0].id
@@ -202,15 +198,15 @@ function deleteDatastoreTable(datasetName) {
         resource_id: resourceId,
         force: true,
         fields: [
-          {id: 'a', type: 'int'},
-          {id: 'b', type: 'text'}
-        ]
+          { id: 'a', type: 'int' },
+          { id: 'b', type: 'text' },
+        ],
       }
       cy.request({
         method: 'POST',
         url: '/api/3/action/datastore_create',
         headers: headers,
-        body: body
+        body: body,
       }).then((response) => {
         expect(response.body.success).to.eq(true)
         // Now delete it
@@ -220,8 +216,8 @@ function deleteDatastoreTable(datasetName) {
           headers: headers,
           body: {
             resource_id: resourceId,
-            force: true
-          }
+            force: true,
+          },
         }).then((response) => {
           expect(response.body.success).to.eq(true)
         })
