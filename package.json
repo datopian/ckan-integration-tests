@@ -16,6 +16,7 @@
     "chai": "^4.2.0",
     "cypress": "^4.9.0",
     "cypress-file-upload": "^4.0.7",
+    "dotenv": "^8.2.0",
     "mocha": "^8.2.1"
   },
   "devDependencies": {
