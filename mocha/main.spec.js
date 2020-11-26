@@ -36,7 +36,7 @@ const client = new Client(
 describe('CKAN Client can create resource and push blob', () => {
   before(async () => {
     // creates an organization to be the owner of test resources
-    const a = await axios.post(
+    await axios.post(
       `${config.baseUrl}/api/3/action/organization_create`,
       { name: orgName },
       { headers: headers }
