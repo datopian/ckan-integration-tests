@@ -1,18 +1,17 @@
 const uuid = () => Math.random().toString(36).slice(2) + '_test'
 
 const headers = {
-  'Authorization': Cypress.env('API_KEY')
+  Authorization: Cypress.env('API_KEY'),
 }
 
 describe('CKAN Classic API Are Working', () => {
-
   const orgName = uuid()
   const packageName = uuid()
 
   it('API: Status Show', () => {
     cy.request({
       url: '/api/3/action/status_show',
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -21,7 +20,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Package List', () => {
     cy.request({
       url: '/api/3/action/package_list',
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -30,7 +29,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Group List', () => {
     cy.request({
       url: '/api/3/action/group_list',
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -39,7 +38,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Tag List', () => {
     cy.request({
       url: '/api/3/action/tag_list',
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -48,7 +47,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Package Search', () => {
     cy.request({
       url: '/api/3/action/package_search?q=XXX', // TODO use a meaningful pkg name
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -58,7 +57,7 @@ describe('CKAN Classic API Are Working', () => {
     cy.request({
       url: '/api/3/action/resource_search?query=name:XXX%20Resource', // TODO use a meaningful pkg name
 
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -70,8 +69,8 @@ describe('CKAN Classic API Are Working', () => {
       url: '/api/3/action/organization_create',
       headers: headers,
       body: {
-        name: orgName
-      }
+        name: orgName,
+      },
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -80,7 +79,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Organization List', () => {
     cy.request({
       url: '/api/3/action/organization_list',
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -89,7 +88,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Organization Show', () => {
     cy.request({
       url: `/api/3/action/organization_show?id=${orgName}`,
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -102,8 +101,8 @@ describe('CKAN Classic API Are Working', () => {
       headers: headers,
       body: {
         name: packageName,
-        owner_org: orgName
-      }
+        owner_org: orgName,
+      },
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -112,7 +111,7 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Package Show', () => {
     cy.request({
       url: `/api/3/action/package_show?id=${packageName}`,
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -124,8 +123,8 @@ describe('CKAN Classic API Are Working', () => {
       url: '/api/3/action/package_delete',
       headers: headers,
       body: {
-        id: packageName
-      }
+        id: packageName,
+      },
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -137,8 +136,8 @@ describe('CKAN Classic API Are Working', () => {
       url: '/api/3/action/organization_delete',
       headers: headers,
       body: {
-        id: orgName
-      }
+        id: orgName,
+      },
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
@@ -147,10 +146,9 @@ describe('CKAN Classic API Are Working', () => {
   it('API: Recenty Chnaged Activity List', () => {
     cy.request({
       url: '/api/3/action/recently_changed_packages_activity_list',
-      headers: headers
+      headers: headers,
     }).then((resp) => {
       expect(resp.body.success).to.eq(true)
     })
   })
-  
 })

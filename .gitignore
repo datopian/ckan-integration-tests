@@ -1,3 +1,4 @@
 node_modules/
-cypress.json
 .vscode/
+.env
+cypress.json
