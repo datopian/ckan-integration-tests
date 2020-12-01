@@ -1,7 +1,3 @@
-import dotenv from 'dotenv'
-
-Cypress.env(dotenv.config().parsed)
-
 const ckanUserName = Cypress.env('CKAN_USERNAME')
 const ckanUserPassword = Cypress.env('CKAN_PASSWORD')
 
