@@ -4,7 +4,7 @@ module.exports.uploadExcelFile = uploadExcelFile;
 module.exports.uploadPdfFile = uploadPdfFile;
 module.exports.uploadLargePdfFile = uploadLargePdfFile;
 module.exports.createOrganizationFromUI = createOrganizationFromUI;
-module.exports.subscribeUnsubscribeDataset = subscribeUnsubscribeDataset;
+//module.exports.subscribeUnsubscribeDataset = subscribeUnsubscribeDataset;
 
 function createPackageFromUI() {
   it('Creating a new package from the UI', () => {
@@ -24,7 +24,7 @@ function createResourceFromUI() {
       cy.get('.page_primary_action > .btn:first-child').click()
       cy.get('#field-image-upload').attachFile({ filePath: 'sample2.csv', fileName: 'sample2.csv' })
       cy.get('#field-name').type('sample2')
-      cy.get('.form-actions > .btn').click()
+      cy.get('button.btn-primary').click()
       cy.contains('sample2')
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
@@ -38,7 +38,7 @@ function uploadExcelFile() {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample.xlsx', fileName: 'sample.xlsx' })
       cy.get('#field-name').type('sample xlsx')
       cy.get('#select2-chosen-1').type('XLSX{enter}')
-      cy.get('.btn-primary').click()
+      cy.get('button.btn-primary').click()
       cy.get('.resource-item > .heading').click()
       cy.get('.module-content > .nav > .active > a').contains('Data Explorer')
       cy.deleteDataset(datasetName)
@@ -51,7 +51,7 @@ function uploadPdfFile() {
   it('Upload PDF', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-with-images.pdf', fileName: 'sample-pdf-with-images.pdf' })
-      cy.get('.btn-primary').click()
+      cy.get('button.btn-primary').click()
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
       cy.get('.resource-item > .heading').click()
       cy.deleteDataset(datasetName)
@@ -64,7 +64,7 @@ function uploadLargePdfFile() {
   it('Upload large PDF', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-large-size.pdf', fileName: 'sample-pdf-large-size.pdf' })
-      cy.get('.btn-primary').click()
+      cy.get('button.btn-primary').click()
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
@@ -80,7 +80,7 @@ function createOrganizationFromUI() {
   })
 }
   
-function subscribeUnsubscribeDataset() {
+/* function subscribeUnsubscribeDataset() {
   it('Make a dataset subscribable and then unsubscribable', () => {
     cy.createDataset().then((datasetName) => {
       cy.location('pathname').should('eq', '/dataset/' + datasetName)
@@ -98,5 +98,5 @@ function subscribeUnsubscribeDataset() {
       cy.purgeDataset(datasetName)
     })
   })
-}
+} */
   

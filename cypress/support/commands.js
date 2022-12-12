@@ -53,7 +53,7 @@ Cypress.Commands.add('createDatasetWithoutFile', (name) => {
     cy.get('#field-title').type(datasetName)
     cy.get('.btn-xs').click()
     cy.get('#field-name').clear().type(datasetName)
-    cy.get('button.btn-primary[type=submit]').click()
+    cy.get('a.btn-primary').click()
     cy.wrap(datasetName)
   })
 })
@@ -72,7 +72,7 @@ Cypress.Commands.add('createDataset', (dataset = false, private_vis = true) => {
     if(!is_private){
       cy.get('#field-private').select('False')
     }
-    cy.get('button.btn-primary[type=submit]').click()
+    cy.get('a.btn-primary').click()
     cy.get('#field-image-upload').attachFile({ filePath: 'sample.csv', fileName: 'sample.csv' })
     cy.get('.btn-primary').click()
     cy.get('.content_action > .btn')

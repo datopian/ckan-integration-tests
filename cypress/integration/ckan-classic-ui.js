@@ -25,5 +25,5 @@ describe('CKAN Classic UI', () => {
   uploadPdfFile()
   uploadLargePdfFile()
   createOrganizationFromUI()
-  subscribeUnsubscribeDataset()
+  //subscribeUnsubscribeDataset()
 })
