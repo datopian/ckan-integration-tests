@@ -7,8 +7,9 @@
   "scripts": {
     "cy:verify": "cypress verify",
     "cy:info": "cypress info",
-    "test": "$(npm bin)/cypress open",
-    "test:headless": "$(npm bin)/cypress run --headless"
+    "test": "node test.js",
+    "test:headless": "cypress run --headless",
+    "test:recorded": "cypress run --record --key 9b3fe9b0-b8ef-4e2d-895f-17f0a6cc5031"
   },
   "dependencies": {
     "cypress-file-upload": "^4.0.7",

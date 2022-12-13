@@ -1,0 +1,14 @@
+{
+    "projectId": "ebkki7",
+    "chromeWebSecurity": false,
+    "baseUrl": "https://data-staging.ubdc.ac.uk/",
+    "pageLoadTimeout": 120000,
+    "env": {
+      "FRONTEND_URL": "",
+      "API_KEY": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkQVhGc1NMVktyLUJ1QUtGdmRycEpUeTBhSk9pVmJ6YUhMZjBSN0VVaThQVlVqc2VFV2s4MXVhRWZRTktYQm9URjlxQy1Wb2NJLUZ2aGxkTCIsImlhdCI6MTY3MDg0Njk2Nn0.yCFqCVlZSPtSLUuT2Zz-fjZidbe-LSNm4TBR9gnL7jE",
+      "CKAN_USERNAME": "ckan_admin",
+      "CKAN_PASSWORD": "IVpkfopaj8IioKOvV82g8IV",
+      "ORG_NAME_SUFFIX": "_organization_test",
+      "DATASET_NAME_SUFFIX": "_dataset_test"
+    }
+}
