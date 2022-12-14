@@ -87,7 +87,7 @@ Cypress.Commands.add('createLinkedDataset', () => {
     cy.get('#field-title').type(datasetName)
     cy.get('.btn-xs').click()
     cy.get('#field-name').clear().type(datasetName)
-    cy.get('button.btn-primary[type=submit]').click()
+    cy.get('button.btn-primary[type=submit]').click({force: true})
     cy.get('[title="Link to a URL on the internet (you can also link to an API)"]').click()
     cy.get('#field-image-url').clear().type('https://raw.githubusercontent.com/datapackage-examples/sample-csv/master/sample.csv')
     cy.get('.btn-primary').click()
