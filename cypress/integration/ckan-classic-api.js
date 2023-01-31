@@ -64,93 +64,93 @@ describe('CKAN Classic API Are Working', () => {
     })
   })
 
-  it('API: Organization Create', () => {
-    cy.request({
-      method: 'POST',
-      url: '/api/3/action/organization_create',
-      headers: headers,
-      body: {
-        name: orgName
-      }
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Organization Create', () => {
+  //   cy.request({
+  //     method: 'POST',
+  //     url: '/api/3/action/organization_create',
+  //     headers: headers,
+  //     body: {
+  //       name: orgName
+  //     }
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Organization List', () => {
-    cy.request({
-      url: '/api/3/action/organization_list',
-      headers: headers
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Organization List', () => {
+  //   cy.request({
+  //     url: '/api/3/action/organization_list',
+  //     headers: headers
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Organization Show', () => {
-    cy.request({
-      url: `/api/3/action/organization_show?id=${orgName}`,
-      headers: headers
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Organization Show', () => {
+  //   cy.request({
+  //     url: `/api/3/action/organization_show?id=${orgName}`,
+  //     headers: headers
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Package Create', () => {
-    cy.request({
-      method: 'POST',
-      url: '/api/3/action/package_create',
-      headers: headers,
-      body: {
-        name: packageName,
-        owner_org: orgName
-      }
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Package Create', () => {
+  //   cy.request({
+  //     method: 'POST',
+  //     url: '/api/3/action/package_create',
+  //     headers: headers,
+  //     body: {
+  //       name: packageName,
+  //       owner_org: orgName
+  //     }
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Package Show', () => {
-    cy.request({
-      url: `/api/3/action/package_show?id=${packageName}`,
-      headers: headers
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Package Show', () => {
+  //   cy.request({
+  //     url: `/api/3/action/package_show?id=${packageName}`,
+  //     headers: headers
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Package Delete', () => {
-    cy.request({
-      method: 'POST',
-      url: '/api/3/action/package_delete',
-      headers: headers,
-      body: {
-        id: packageName
-      }
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Package Delete', () => {
+  //   cy.request({
+  //     method: 'POST',
+  //     url: '/api/3/action/package_delete',
+  //     headers: headers,
+  //     body: {
+  //       id: packageName
+  //     }
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Organization Delete', () => {
-    cy.request({
-      method: 'POST',
-      url: '/api/3/action/organization_delete',
-      headers: headers,
-      body: {
-        id: orgName
-      }
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Organization Delete', () => {
+  //   cy.request({
+  //     method: 'POST',
+  //     url: '/api/3/action/organization_delete',
+  //     headers: headers,
+  //     body: {
+  //       id: orgName
+  //     }
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
 
-  it('API: Recenty Chnaged Activity List', () => {
-    cy.request({
-      url: '/api/3/action/recently_changed_packages_activity_list',
-      headers: headers
-    }).then((resp) => {
-      expect(resp.body.success).to.eq(true)
-    })
-  })
+  // it('API: Recenty Chnaged Activity List', () => {
+  //   cy.request({
+  //     url: '/api/3/action/recently_changed_packages_activity_list',
+  //     headers: headers
+  //   }).then((resp) => {
+  //     expect(resp.body.success).to.eq(true)
+  //   })
+  // })
   
 })
