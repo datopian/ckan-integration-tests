@@ -9,7 +9,7 @@ module.exports.createOrganizationFromUI = createOrganizationFromUI;
 function createPackageFromUI() {
   it('Creating a new package from the UI', () => {
     cy.createDataset().then((datasetName) => {
-      cy.location('pathname').should('eq', '/dataset/' + datasetName)
+      cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
     })
@@ -23,7 +23,8 @@ function createResourceFromUI() {
       cy.get('.page-header > .nav > :nth-child(2) > a').click()
       cy.get('.page_primary_action > .btn:first-child').click()
       cy.get('#field-image-upload').attachFile({ filePath: 'sample2.csv', fileName: 'sample2.csv' })
-      cy.get('#field-name').type('sample2')
+      cy.get('[name="name_translated-en"]').type('sample2')
+      cy.get('[name="name_translated-ar"]').type('sample2')
       cy.get('button.btn-primary').click()
       cy.contains('sample2')
       cy.deleteDataset(datasetName)
@@ -36,7 +37,8 @@ function uploadExcelFile() {
   it('Uploads Excel file and creates a preview (data explorer)', () => {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample.xlsx', fileName: 'sample.xlsx' })
-      cy.get('#field-name').type('sample xlsx')
+      cy.get('[name="name_translated-en"]').type('sample xlsx')
+      cy.get('[name="name_translated-ar"]').type('sample xlsx')
       cy.get('#select2-chosen-1').type('XLSX{enter}')
       cy.scrollTo('bottom')
       cy.get('button.btn-primary[type=submit]').click({force: true})
@@ -53,7 +55,7 @@ function uploadPdfFile() {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-with-images.pdf', fileName: 'sample-pdf-with-images.pdf' })
       cy.get('button.btn-primary').click()
-      cy.location('pathname').should('eq', '/dataset/' + datasetName)
+      cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
       cy.get('.resource-item > .heading').click()
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
@@ -66,7 +68,7 @@ function uploadLargePdfFile() {
     cy.createDatasetWithoutFile().then((datasetName) => {
       cy.get('#field-image-upload').attachFile({ filePath: 'sample-pdf-large-size.pdf', fileName: 'sample-pdf-large-size.pdf' })
       cy.get('button.btn-primary').click()
-      cy.location('pathname').should('eq', '/dataset/' + datasetName)
+      cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
       cy.deleteDataset(datasetName)
       cy.purgeDataset(datasetName)
     })

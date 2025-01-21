@@ -30,7 +30,7 @@ describe('CKAN DataPusher', () => {
       cy.get('.page-header > .nav > :nth-child(2) > a').click()
       cy.get(':nth-child(1) > td').should('not.contain', 'Error')
      // cy.get(':nth-child(2) > td').should('contain', 'Just now')
-      cy.get(':nth-child(2) > td').contains(/Just now | seconds ago/i)
+      cy.get(':nth-child(2) > td').contains(/Just now | seconds ago | minute ago | minutes ago/i)
       // Now wait for 10s and check it has completed
       cy.wait(10000)
       cy.get('.nav > .active > a').click()

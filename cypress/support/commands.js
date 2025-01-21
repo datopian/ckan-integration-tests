@@ -50,7 +50,8 @@ Cypress.Commands.add('createDatasetWithoutFile', (name) => {
   cy.visit({url: '/dataset'}).then((resp) => {
     const datasetName = name || getRandomDatasetName()
     cy.get('.page_primary_action > .btn').click()
-    cy.get('#field-title').type(datasetName)
+    cy.get('[name="title_translated-en"]').type(datasetName)
+    cy.get('[name="title_translated-ar"]').type(datasetName)
     cy.get('.btn-xs').click()
     cy.get('#field-name').clear().type(datasetName)
     cy.get('a.btn-primary').click()
@@ -66,7 +67,10 @@ Cypress.Commands.add('createDataset', (dataset = false, private_vis = true) => {
        datasetName = getRandomDatasetName()
     }
     cy.get('.page_primary_action > .btn').click()
-    cy.get('#field-title').type(datasetName)
+    cy.get('[name="title_translated-en"]').type(datasetName)
+    cy.get('[name="title_translated-ar"]').type(datasetName)
+    cy.get('[name="notes_translated-en"]').type(datasetName)
+    cy.get('[name="notes_translated-ar"]').type(datasetName)
     cy.get('.btn-xs').click()
     cy.get('#field-name').clear().type(datasetName)
     if(!is_private){
@@ -84,7 +88,10 @@ Cypress.Commands.add('createLinkedDataset', () => {
   cy.visit({url: '/dataset'}).then((resp) => {
     const datasetName = getRandomDatasetName()
     cy.get('.page_primary_action > .btn').click()
-    cy.get('#field-title').type(datasetName)
+
+    cy.get('[name="title_translated-en"]').type(datasetName)
+    cy.get('[name="title_translated-ar"]').type(datasetName)
+
     cy.get('.btn-xs').click()
     cy.get('#field-name').clear().type(datasetName)
     cy.get('button.btn-primary[type=submit]').click({force: true})
@@ -143,11 +150,12 @@ Cypress.Commands.add('createOrganization', () => {
   const organizationName = getRandomOrganizationName()
   cy.get('.nav > :nth-child(2) > a').first().click()
   cy.get('.page_primary_action > .btn').click()
-  cy.get('#field-name').type(organizationName)
+  cy.get('[name="title_translated-en"]').type(organizationName)
+  cy.get('[name="title_translated-ar"]').type(organizationName)
   cy.get('.btn-xs').click()
-  cy.get('#field-url').clear().type(organizationName)
+  cy.get('#field-name').clear().type(organizationName)
   cy.get('.form-actions > .btn').click()
-  cy.location('pathname').should('eq', '/organization/' + organizationName)
+  cy.location('pathname').should('eq', '/ckan/organization/' + organizationName)
   cy.wrap(organizationName)
 })
 

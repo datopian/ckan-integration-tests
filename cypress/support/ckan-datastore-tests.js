@@ -8,9 +8,10 @@ module.exports.deleteDatastoreTable = deleteDatastoreTable
 
 function createDatastoreTableExistingResource(datasetName){
   it('Create a DataStore table for existing CKAN resource + check datastore_search and datastore_search_sql endpoints', () => {
-    cy.get('#field-name').type(datasetName)
+    cy.get('[name="name_translated-en"]').type(datasetName)
+    cy.get('[name="name_translated-ar"]').type(datasetName)
     cy.get('.btn-primary').click()
-    cy.location('pathname').should('eq', '/dataset/' + datasetName)
+    cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
     cy.request({
       method: 'GET',
       url: '/api/3/action/package_show?id=' + datasetName,
@@ -62,9 +63,10 @@ function createDatastoreTableExistingResource(datasetName){
 
 function createDatastoreTableNewResource(datasetName){
   it('Create a DataStore table with a new CKAN resource', () => {
-    cy.get('#field-name').type(datasetName)
+    cy.get('[name="name_translated-en"]').type(datasetName)
+    cy.get('[name="name_translated-ar"]').type(datasetName)
     cy.get('.btn-primary').click()
-    cy.location('pathname').should('eq', '/dataset/' + datasetName)
+    cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
     const body = {
       resource: {
         package_id: datasetName,
@@ -93,7 +95,7 @@ function createDatastoreTableNewResource(datasetName){
       }).then((response) => {
         expect(response.body.success).to.eq(true)
         const resourceId = response.body.result.resources
-          .find(item => item.name === datasetName + '-datastore')
+          .find(item => item.url_type === 'datastore')
           .id
         cy.request({
           method: 'GET',
@@ -118,9 +120,10 @@ function getTableInformation() {
 
 function upsertDatastoreTable(datasetName) {
   it('Upsert to datastore table', () => {
-    cy.get('#field-name').type(datasetName)
+    cy.get('[name="name_translated-en"]').type(datasetName)
+    cy.get('[name="name_translated-ar"]').type(datasetName)
     cy.get('.btn-primary').click()
-    cy.location('pathname').should('eq', '/dataset/' + datasetName)
+    cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
     cy.request({
       method: 'GET',
       url: '/api/3/action/package_show?id=' + datasetName,
@@ -184,9 +187,10 @@ function upsertDatastoreTable(datasetName) {
 
 function deleteDatastoreTable(datasetName) {
   it('Delete a table from datastore', () => {
-    cy.get('#field-name').type(datasetName)
+    cy.get('[name="name_translated-en"]').type(datasetName)
+    cy.get('[name="name_translated-ar"]').type(datasetName)
     cy.get('.btn-primary').click()
-    cy.location('pathname').should('eq', '/dataset/' + datasetName)
+    cy.location('pathname').should('eq', '/ckan/dataset/' + datasetName)
     cy.request({
       method: 'GET',
       url: '/api/3/action/package_show?id=' + datasetName,

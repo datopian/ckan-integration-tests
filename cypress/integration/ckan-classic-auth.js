@@ -14,10 +14,10 @@ describe('Anonymous users access', () => {
     })
   })
 
-  it('User registration enabled', () => {
+  it('User registration disabled', () => {
     cy.clearCookies()
     cy.request({ url: '/user/register', failOnStatusCode: false }).then((resp) => {
-      expect(resp.status).to.eq(200)
+      expect(resp.status).to.eq(403)
     })
   })
 })
